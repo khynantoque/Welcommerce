@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Welcommerce.MySplash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#201A17</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo</item>
+        <item name="postSplashScreenTheme">@style/Theme.Welcommerce</item>
+    </style>
+</resources>
