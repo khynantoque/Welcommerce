@@ -1,10 +1,17 @@
 package com.khynsoft.welcommerce.ui.theme
 
+import android.app.Activity
+import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalView
+import androidx.core.view.WindowCompat
 
 
 private val LightColors = lightColorScheme(
@@ -74,17 +81,34 @@ private val DarkColors = darkColorScheme(
 
 @Composable
 fun WelcommerceTheme(
-  useDarkTheme: Boolean = isSystemInDarkTheme(),
-  content: @Composable() () -> Unit
+    useDarkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable() () -> Unit
 ) {
-  val colors = if (!useDarkTheme) {
-    LightColors
-  } else {
-    DarkColors
-  }
+    val colors = if (!useDarkTheme) {
+        LightColors
+    } else {
+        DarkColors
+    }
 
-  MaterialTheme(
-    colorScheme = colors,
-    content = content
-  )
+    val view = LocalView.current
+
+    SideEffect {
+        val window = (view.context as Activity).window
+
+        window.statusBarColor = Color.Transparent.toArgb()
+        window.navigationBarColor = Color.Transparent.toArgb()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            window.isNavigationBarContrastEnforced = false
+        }
+
+        val windowInsetsController = WindowCompat.getInsetsController(window, view)
+        windowInsetsController.isAppearanceLightNavigationBars = !useDarkTheme
+        windowInsetsController.isAppearanceLightStatusBars = !useDarkTheme
+    }
+
+    MaterialTheme(
+        colorScheme = colors,
+        content = content
+    )
 }
