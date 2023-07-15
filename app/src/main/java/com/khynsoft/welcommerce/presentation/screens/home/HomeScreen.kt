@@ -37,7 +37,9 @@ fun HomeScreen(
     ) {
         Scaffold(
             topBar = { HomeTopBar(onMenuClicked) },
-            content = {}
+            content = {
+                HomeContent(it)
+            }
         )
     }
 }
@@ -55,8 +57,7 @@ fun NavigationDrawer(
                 content = {
                     Box(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .height(250.dp),
+                            .fillMaxWidth(),
                         contentAlignment = Alignment.Center
                     ) {
                         Image(
