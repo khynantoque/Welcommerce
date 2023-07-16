@@ -41,7 +41,7 @@ fun CircledCategory(
     var active by remember {
         mutableStateOf(isActive)
     }
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+    Column() {
         Box(
             modifier = Modifier
                 .size(80.dp)

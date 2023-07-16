@@ -80,9 +80,6 @@ fun HomeContent(
             CircledCategory(name = "Hotel", icon = R.drawable.logo_hotel) {
 
             }
-            CircledCategory(name = "Restaurant", icon = R.drawable.logo_hotel, isActive = true) {
-
-            }
         }
     }
 
